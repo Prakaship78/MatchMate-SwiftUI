@@ -38,12 +38,12 @@ struct MatchListCardView: View {
             
             if data.matchStatus == .none {
                 HStack(alignment: .center, spacing: 80) {
-                    RoundedActionButton(status: .declined, iconName: "multiply.circle") {
+                    RoundedActionButton(status: .declined, iconName: "multiply.circle", buttonColor: Color.red) {
                         data.matchStatus = .declined
                         cancelButtonAction?()
                     }
                     
-                    RoundedActionButton(status: .accepted, iconName: "checkmark.circle") {
+                    RoundedActionButton(status: .accepted, iconName: "checkmark.circle", buttonColor: Color.green) {
                         data.matchStatus = .accepted
                         acceptedButtonAction?()
                     }
@@ -53,25 +53,21 @@ struct MatchListCardView: View {
             }
             
             if data.matchStatus != .none {
-                Text(data.matchStatus == .accepted ? "Accepted" : "Declined")
-                    .font(.system(size: 24))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(Color.teal)
-                    .foregroundStyle(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                RoundedStatusView(status: data.matchStatus == .accepted ? "Accepted" : "Declined")
             }
             
             
         }
         .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.secondarySystemBackground))
-                .shadow(radius: 5)
-        )
+//        .background(
+//            RoundedRectangle(cornerRadius: 12)
+//                .fill(Color(.secondarySystemBackground))
+//                .shadow(radius: 5)
+//        )
+        .glassEffect(in: .rect(cornerRadius : 12))
         .padding(.horizontal,32)
         .padding(.vertical, 8)
+
     }
 }
 

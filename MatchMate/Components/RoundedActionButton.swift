@@ -10,17 +10,19 @@ import SwiftUI
 struct RoundedActionButton : View {
     let status : MatchStatus
     let iconName : String
+    let buttonColor : Color
     let action : (()->Void)?
     var body: some View {
         Button {
             action?()
-//            data.matchStatus = .declined
-//            cancelButtonAction?()
         } label: {
             Image(systemName: iconName)
                 .resizable()
                 .frame(width: 50,height: 50)
-                .foregroundStyle(Color.red)
+                .foregroundStyle(buttonColor)
+            
         }
+        .glassEffect()
+        
     }
 }
